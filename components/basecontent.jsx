@@ -7,7 +7,7 @@ export default function Basecontent(props) {
     return (
         <QueryClientProvider client={queryClient}>
             <div>
-                Hello
+                {props.children}
             </div>
         </QueryClientProvider>
     )
