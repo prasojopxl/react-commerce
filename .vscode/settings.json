@@ -19,7 +19,8 @@
         "editorLineNumber.foreground": "#7b7c7b",
         "editor.selectionBackground": "#7b7c7b",
         "editorIndentGuide.activeBackground": "#79ba8a",
-        "editorIndentGuide.background": "#5c5c5d"
+        "editorIndentGuide.background": "#5c5c5d",
+
     },
     "editor.cursorBlinking": "expand",
     "editor.cursorSmoothCaretAnimation": "on",
@@ -27,7 +28,7 @@
     "editor.copyWithSyntaxHighlighting": true,
     "editor.fontWeight": "normal",
     "editor.fontSize": 14,
-    "editor.guides.bracketPairs": false,
+    "editor.guides.bracketPairs": true,
     "editor.guides.highlightActiveBracketPair": true,
     "editor.guides.indentation": true,
     "editor.guides.highlightActiveIndentation": true,
