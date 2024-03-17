@@ -36,34 +36,24 @@ export default function ProductList() {
 
     console.log(query.data.data)
 
+    const myData = query.data.data
     return (
         <div className="relative flex flex-wrap -mx-4">
-            <ItemProduct
-                category="MENS"
-                image="/images/prod.jpg"
-                link="/"
-                title="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-                price="$100"
-            />
-            <ItemProduct
-                category="Women"
-                link="/"
-                title="1 Backpack, Fits 15 Laptops"
-                price="$110"
-            />
-            <ItemProduct
-                category="Child"
-                image="/images/prod.jpg"
-                link="/"
-                title="ackpack, Fits 15 Laptops"
-                price="$300"
-            />
-            <ItemProduct
-                category="MENS"
-                link="/"
-                title="Fits 15 Laptops"
-                price="$100"
-            />
+            {
+                myData.map(item => {
+                    return (
+                        <ItemProduct
+                            category={item.category}
+                            image={item.image}
+                            link={`/product/${item.id}`}
+                            title={item.title}
+                            price={`$${item.price}`}
+                            rate={parseInt(`${item.rating.rate}`)}
+                        />
+                    )
+                })
+            }
+
         </div>
     )
 }

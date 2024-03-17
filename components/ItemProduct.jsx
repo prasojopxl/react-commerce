@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image"
 import { getData } from "@/lib/services";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 
 
@@ -19,10 +20,22 @@ export default function ItemProduct(props) {
                 <Link href={`${props.link ? props.link : "/"}`} className="bg-slate-400 rounded-lg text-white px-4 py-3 text-center hover:bg-black">Buy Now</Link>
                 <h5 className="text-lg">{props.category ? props.category : "no category"}</h5>
                 <h2 className="text-3xl font-bold">{props.title ? props.title : "no title"}</h2>
-                <div> star</div>
+                <div className="flex gap-1">{
+                    props.rate <= 1 ?
+                        <><FaStar /><FaRegStar /><FaRegStar /><FaRegStar /><FaRegStar /> </>
+                        :
+                        props.rate <= 2 ?
+                            <><FaStar /><FaStar /><FaRegStar /><FaRegStar /><FaRegStar /></>
+                            : props.rate <= 3 ? <><FaStar /><FaStar /><FaStar /><FaRegStar /><FaRegStar /></>
+                                : props.rate <= 4 ? <><FaStar /><FaStar /><FaStar /><FaStar /><FaRegStar /></>
+                                    : <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>
+
+                }
+
+                </div>
                 <div className="flex justify-between text-lg opacity-75">{props.price ? props.price : "no price"}</div>
             </div>
-        </div>
+        </div >
     )
 }
 
