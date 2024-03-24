@@ -17,21 +17,15 @@ export default function ItemProduct(props) {
                 <div className="relative">
                     <Image src={`${props.image ? props.image : "/images/no-image-square.jpg"}`} width={1049} height={1500} alt={props.title} />
                 </div>
-                <Link href={`${props.link ? props.link : "/"}`} className="bg-slate-400 rounded-lg text-white px-4 py-3 text-center hover:bg-black">Buy Now</Link>
+                <Link href={`${props.link ? props.link : "/"}`} className="bg-slate-400 rounded-lg text-white px-4 py-3 text-center hover:bg-black">Detail</Link>
                 <h5 className="text-lg">{props.category ? props.category : "no category"}</h5>
                 <h2 className="text-3xl font-bold">{props.title ? props.title : "no title"}</h2>
-                <div className="flex gap-1">{
-                    props.rate <= 1 ?
-                        <><FaStar /><FaRegStar /><FaRegStar /><FaRegStar /><FaRegStar /> </>
-                        :
-                        props.rate <= 2 ?
-                            <><FaStar /><FaStar /><FaRegStar /><FaRegStar /><FaRegStar /></>
-                            : props.rate <= 3 ? <><FaStar /><FaStar /><FaStar /><FaRegStar /><FaRegStar /></>
-                                : props.rate <= 4 ? <><FaStar /><FaStar /><FaStar /><FaStar /><FaRegStar /></>
-                                    : <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>
-
-                }
-
+                <div className="flex gap-1">
+                    {
+                        Array.from({ length: 5 }, (_, i) => {
+                            return i < props.rate ? <FaStar key={i} /> : <FaRegStar key={i} />;
+                        })
+                    }
                 </div>
                 <div className="flex justify-between text-lg opacity-75">{props.price ? props.price : "no price"}</div>
             </div>
