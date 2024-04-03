@@ -1,13 +1,16 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query"
 import { getData } from "@/lib/services";
 import Basecontent from "@/components/basecontent";
+import { useStore } from "@/lib/store";
 
 
 function DataPageDetail() {
+    const increasePopulation = useStore((state) => state.increasePopulation)
+    const [cartValue, setCartValue] = useState(0)
     const params = useParams()
     const getQuery = async () => {
         return await getData(`/products/${params.id}`)
@@ -29,6 +32,7 @@ function DataPageDetail() {
         )
     }
     const dataContent = query.data?.data;
+    console.log(cartValue)
 
     return (
         <div className="wrapper py-11">
@@ -46,11 +50,11 @@ function DataPageDetail() {
                     <p>Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</p>
                     <div className="my-5">Rating</div>
                     <div className="flex gap-3 items-center">
-                        <div className="relative btn">-</div>
-                        <div>1</div>
-                        <div className="relative btn">+</div>
+                        <div className="relative btn" onClick={() => setCartValue(cartValue - 1)}>-</div>
+                        <div>{cartValue}</div>
+                        <div className="relative btn" onClick={() => setCartValue(cartValue + 1)}>+</div>
                     </div>
-                    <div className="btn-red my-4 ">Add to cart</div>
+                    <div className="btn-red my-4 cursor-pointer" onClick={increasePopulation}>Add to cart</div>
                 </div>
             </div>
         </div>

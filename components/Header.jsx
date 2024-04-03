@@ -1,8 +1,15 @@
+"use client"
 import React from 'react'
 import Link from "next/link";
 import { IoMdCart } from "react-icons/io";
+import { useStore } from "@/lib/store";
 
 export default function Header() {
+    const cart = useStore((state) => state.cart)
+    const setCart = useStore((state) => state.setCart)
+
+    const increaseCart = () => setCart(cart + 1)
+
     return (
         <div className="bg-color-main">
             <div className="wrapper">
@@ -11,7 +18,10 @@ export default function Header() {
                     <div>
                         <input type="text" placeholder="Search..." className="py-2 px-3 rounded-lg min-w-[300px]" />
                     </div>
-                    <div className="text-3xl text-white"><IoMdCart /></div>
+                    <div className="text-3xl text-white relative">
+                        <div className="text-sm absolute -top-2 -right-2 bg-black text-white rounded-full w-5 h-5 flex justify-center items-center">{cart}</div>
+                        <IoMdCart />
+                    </div>
                 </div>
             </div>
         </div>

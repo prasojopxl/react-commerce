@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getData } from "@/lib/services";
 
 export default function ProductList() {
+
     const getQuery = async () => {
         return await getData("/products")
     }
@@ -34,7 +35,6 @@ export default function ProductList() {
         )
     }
 
-    console.log(query.data.data)
 
     const myData = query.data.data
     return (
