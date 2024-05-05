@@ -20,7 +20,7 @@ export default function ProductList() {
                 <div className="animate-pulse w-full flex gap-4">
                     <div className="rounded-sm bg-slate-200 h-[300px] w-full "></div>
                     <div className="rounded-sm bg-slate-200 h-[300px] w-full"></div>
-                    <div className="rounded-sm bg-slate-200 h-[300px] w-full "></div>
+                    <div className="rounded-sm bg-slate-200 h-[300px] w-full hidden lg:block "></div>
                 </div>
             </div>
         )
@@ -34,15 +34,14 @@ export default function ProductList() {
         )
     }
 
-    console.log(query.data.data)
-
     const myData = query.data.data
     return (
-        <div className="relative flex flex-wrap -mx-4">
+        <div className="relative flex flex-wrap lg:-mx-4 -mx-2 ">
             {
                 myData.map(item => {
                     return (
                         <ItemProduct
+                            key={item.id}
                             category={item.category}
                             image={item.image}
                             link={`/product/${item.id}`}
