@@ -5,10 +5,15 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query"
 import { getData } from "@/lib/services";
 import Basecontent from "@/components/basecontent";
+import { useStrore } from "@/lib/store";
 
 
 function DataPageDetail() {
     const [cartValue, setCartValue] = useState(2)
+    const { cart, increment } = useStrore()
+
+    console.log(cart)
+
     const params = useParams()
     const getQuery = async () => {
         return await getData(`/products/${params.id}`)
@@ -53,7 +58,7 @@ function DataPageDetail() {
                             }
                         }}>-</div>
                         <div>{cartValue}</div>
-                        <div className="relative btn cursor-pointer" onClick={() => setCartValue(cartValue + 1)}>+</div>
+                        <div className="relative btn cursor-pointer" onClick={increment}>+</div>
                     </div>
                     <div className="btn-red my-4 ">Add to cart</div>
                 </div>
@@ -65,8 +70,6 @@ function DataPageDetail() {
 }
 
 export default function PageDetail() {
-
-
     return (
         <Basecontent>
             <DataPageDetail />
