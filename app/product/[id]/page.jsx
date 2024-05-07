@@ -9,7 +9,7 @@ import { useStore } from "@/lib/store";
 
 
 function DataPageDetail() {
-    const [cartValue, setCartValue] = useState(2)
+    const [cartValue, setCartValue] = useState(0)
     const { cart, updateCart, test } = useStore()
 
 
@@ -59,7 +59,10 @@ function DataPageDetail() {
                         <div>{cartValue}</div>
                         <div className="relative btn cursor-pointer" onClick={() => setCartValue(cartValue + 1)}>+</div>
                     </div>
-                    <div className="btn-red my-4" onClick={() => updateCart(dataContent?.id, dataContent?.price, dataContent?.title, cartValue)}>Add to cart</div>
+                    {
+                        cartValue > 0 ? <div className="btn-red my-4" onClick={() => updateCart(dataContent?.id, dataContent?.price, dataContent?.title, cartValue)}>Add to cart</div> : <div className="btn-red cursor-default my-4 opacity-50">Add to cart</div>
+                    }
+
                 </div>
             </div>
         </div>
