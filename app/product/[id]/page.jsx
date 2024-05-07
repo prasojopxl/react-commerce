@@ -5,14 +5,13 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query"
 import { getData } from "@/lib/services";
 import Basecontent from "@/components/basecontent";
-import { useStrore } from "@/lib/store";
+import { useStore } from "@/lib/store";
 
 
 function DataPageDetail() {
     const [cartValue, setCartValue] = useState(2)
-    const { cart, increment } = useStrore()
+    const { cart, updateCart, test } = useStore()
 
-    console.log(cart)
 
     const params = useParams()
     const getQuery = async () => {
@@ -41,7 +40,7 @@ function DataPageDetail() {
             <div className="flex">
                 <div className="w-6/12">
                     {
-                        dataContent?.image ? <Image src={`${dataContent?.image}`} width={500} height={500} /> : <Image src="/images/no-image-square.jpg" width={500} height={500} />
+                        dataContent?.image ? <Image src={`${dataContent?.image}`} width={500} height={500} alt="" /> : <Image src="/images/no-image-square.jpg" width={500} height={500} alt="" />
                     }
                 </div>
                 <div className="w-6/12">
@@ -58,9 +57,9 @@ function DataPageDetail() {
                             }
                         }}>-</div>
                         <div>{cartValue}</div>
-                        <div className="relative btn cursor-pointer" onClick={increment}>+</div>
+                        <div className="relative btn cursor-pointer" onClick={() => setCartValue(cartValue + 1)}>+</div>
                     </div>
-                    <div className="btn-red my-4 ">Add to cart</div>
+                    <div className="btn-red my-4" onClick={() => updateCart(dataContent?.id, dataContent?.price, dataContent?.title, cartValue)}>Add to cart</div>
                 </div>
             </div>
         </div>
