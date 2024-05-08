@@ -2,12 +2,14 @@
 import React from 'react'
 import Link from "next/link";
 import { IoMdCart } from "react-icons/io";
-import { useStrore } from "@/lib/store";
+import { useStore } from "@/lib/store";
 import { CiMenuKebab } from "react-icons/ci";
 
 
 export default function Header() {
-    const { cart, productName, price } = useStrore()
+    const { cart, productName, price } = useStore()
+
+    console.log(cart.length)
     return (
         <div className="bg-color-main">
             <div className="wrapper">
@@ -19,7 +21,7 @@ export default function Header() {
                     <div className="flex">
                         <Link href="/cart" className="text-3xl text-white relative">
                             <IoMdCart />
-                            <div className="absolute text-[10px] top-0 right-0 bg-black text-white w-5 h-5 rounded-full flex items-center justify-center">{cart}</div>
+                            <div className="absolute text-[10px] top-0 right-0 bg-black text-white w-5 h-5 rounded-full flex items-center justify-center">{cart.length}</div>
                         </Link>
                         <div className="text-white text-2xl lg:hidden block">
                             <CiMenuKebab />

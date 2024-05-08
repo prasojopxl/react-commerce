@@ -5,12 +5,12 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query"
 import { getData } from "@/lib/services";
 import Basecontent from "@/components/basecontent";
-import { useStrore } from "@/lib/store";
+import { useStore } from "@/lib/store";
 
 
 function DataPageDetail() {
     const [cartValue, setCartValue] = useState(2)
-    const { cart, increment } = useStrore()
+    const { cart, updateCart, test } = useStore()
 
     console.log(cart)
 
@@ -35,7 +35,6 @@ function DataPageDetail() {
         )
     }
     const dataContent = query.data?.data;
-
     return (
         <div className="wrapper py-11">
             <div className="flex">
@@ -58,9 +57,9 @@ function DataPageDetail() {
                             }
                         }}>-</div>
                         <div>{cartValue}</div>
-                        <div className="relative btn cursor-pointer" onClick={increment}>+</div>
+                        <div className="relative btn cursor-pointer" onClick={() => setCartValue(cartValue + 1)}>+</div>
                     </div>
-                    <div className="btn-red my-4 ">Add to cart</div>
+                    <div className="btn-red my-4 " onClick={() => updateCart(dataContent?.id, dataContent?.price, dataContent?.title, cartValue)}>Add to cart</div>
                 </div>
             </div>
         </div>
