@@ -57,7 +57,12 @@ function DataPageDetail() {
                         <div>{cartValue}</div>
                         <div className="relative btn cursor-pointer" onClick={() => setCartValue(cartValue + 1)}>+</div>
                     </div>
-                    <div className="btn-red my-4 " onClick={() => updateCart(dataContent?.id, dataContent?.price, dataContent?.title, dataContent?.image, cartValue)}>Add to cart</div>
+                    {
+                        cartValue > 0 ? <div className="btn-red my-4 " onClick={() => updateCart(dataContent?.id, dataContent?.price, dataContent?.title, dataContent?.image, cartValue)}>Add to cart</div>
+                            :
+                            <div className="btn-gray my-4 opacity-40">Add to cart</div>
+                    }
+
                 </div>
             </div>
         </div>

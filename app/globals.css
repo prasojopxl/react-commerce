@@ -13,6 +13,11 @@
 }
 
 .btn-red {
-    @apply border border-neutral-200 bg-color-main text-white hover:bg-slate-800 hover:text-neutral-50 min-w-[50px] text-center rounded-lg 
+    @apply border border-neutral-200 bg-color-main text-white hover:bg-slate-800 hover:text-neutral-50 min-w-[50px] text-center rounded-lg  cursor-pointer
+    min-h-[40px] flex items-center justify-center
+}
+
+.btn-gray {
+    @apply border border-neutral-200 bg-gray-400 text-white  min-w-[50px] text-center rounded-lg 
     min-h-[40px] flex items-center justify-center
 }
