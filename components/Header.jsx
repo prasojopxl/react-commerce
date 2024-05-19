@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
     const { cart } = useStore()
-    console.log(cart)
     return (
         <div className="bg-color-main">
             <div className="wrapper">
