@@ -77,6 +77,7 @@ export default function ProductList() {
 
 
     return (
+
         <div className="relative flex flex-wrap lg:-mx-4 -mx-2 ">
             {
                 newData.map(item => {
