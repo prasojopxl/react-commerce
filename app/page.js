@@ -5,7 +5,7 @@ import SortData from "@/components/SortData";
 import Basecontent from "@/components/basecontent";
 import ProductList from "@/components/ProductList";
 
-export default function Home() {
+export default function Home() {    
     return (
     <div className="wrapper">
         <Basecontent>
