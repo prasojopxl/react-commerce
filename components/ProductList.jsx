@@ -6,14 +6,15 @@ import { getData } from "@/lib/services";
 import _ from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
 
+export const getQuery = async () => {
+    return await getData("/products")
+}
+
 export default function ProductList() {
     const searchParams = useSearchParams();
     const paramsCategory = searchParams.get("category")
     const paramsSort = searchParams.get("sort")
 
-    const getQuery = async () => {
-        return await getData("/products")
-    }
     const query = useQuery({
         queryKey: ["product"],
         queryFn: getQuery
