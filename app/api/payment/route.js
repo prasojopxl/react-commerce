@@ -25,7 +25,7 @@ export async function POST(req) {
             key: item.id,
             id: item.id,
             name: item.name,
-            price: parseInt(`${item.price}`),
+            price: _.ceil(parseFloat(item.price.toString())),
             quantity: item.quantity,
         }
     })

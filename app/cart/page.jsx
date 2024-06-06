@@ -24,8 +24,12 @@ export default function CartPage() {
     const handleCheckout = async () => {
         const response = await axios.post("/api/payment", data)
             .then((response) => {
-                console.log(response.data)
+                return response.data.token
             })
+            .catch((error) => {
+                console.log(error)
+            })
+        window.snap.pay(response)
     }
     useEffect(() => {
         const total = _.sumBy(cart, 'totalPriceItem');

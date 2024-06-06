@@ -4,8 +4,21 @@ import FilterData from "@/components/FilterData";
 import SortData from "@/components/SortData";
 import Basecontent from "@/components/basecontent";
 import ProductList from "@/components/ProductList";
+import { useEffect } from "react";
 
 export default function Home() {    
+    useEffect(()=> {
+        // const scriptSnap = "https://app.sandbox.midtrans.com/snap/snap.js"
+        // const clientKey = process.env.NEXT_PUBLIC_CLIENT_KEY
+        // const script = document.createElement("script")
+        // script.src = scriptSnap
+        // script.setAttribute("data-client-key", clientKey)
+        // script.async = true
+        // document.body.appendChild(script)
+        // return ()=> {
+        //     document.body.removeChild(script)
+        // }
+    },[])
     return (
     <div className="wrapper">
         <Basecontent>

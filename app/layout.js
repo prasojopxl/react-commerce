@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"            
+            data-client-key="SB-Mid-client-cdyZkykojyo8-Ddl"></Script>
       <body className={inter.className} suppressHydrationWarning={true}>
         <Header/>
           {children}
