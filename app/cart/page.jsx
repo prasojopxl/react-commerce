@@ -4,11 +4,29 @@ import React, { useEffect } from 'react'
 import { useStore } from "@/lib/store";
 import { useState } from "react";
 import _ from "lodash"
+import axios from "axios";
+
 
 export default function CartPage() {
     const [totalCart, setTotalCart] = useState(0)
     const { cart } = useStore()
-    console.log(cart)
+    const data = cart.map(item => {
+        return {
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            image: item.image,
+            quantity: item.total,
+            totalPriceItem: item.totalPriceItem
+        }
+    })
+
+    const handleCheckout = async () => {
+        const response = await axios.post("/api/payment", data)
+            .then((response) => {
+                console.log(response.data)
+            })
+    }
     useEffect(() => {
         const total = _.sumBy(cart, 'totalPriceItem');
         setTotalCart(total);
@@ -41,11 +59,17 @@ export default function CartPage() {
                                 }) : <div className="w-full h-full flex items-center justify-center">Keranjang Kosong</div>
                             }
                         </div>
-                        <div className="flex justify-between mt-10 text-3xl font-bold">
-                            <div>Total</div>
-                            <div>${totalCart}</div>
-                        </div>
-                        <div className="btn mt-5 p-3 cursor-pointer">Checkout</div>
+                        {
+                            cart.length > 0 ?
+                                <>
+                                    <div className="flex justify-between mt-10 text-3xl font-bold">
+                                        <div>Total</div>
+                                        <div>${totalCart}</div>
+                                    </div>
+                                    <div className="btn mt-5 p-3 cursor-pointer" onClick={handleCheckout}>Checkout</div>
+                                </>
+                                : null
+                        }
                     </div>
                 </div>
             </div>

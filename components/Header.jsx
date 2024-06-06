@@ -27,8 +27,7 @@ function HeaderSection() {
         return item.title.toLowerCase().includes(keyword.toLowerCase())
     })
 
-    console.log(resultSearch)
-
+    console.log(process.env.serverkey)
     return (
         <div>
             <div className="bg-color-main">
