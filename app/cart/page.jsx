@@ -5,16 +5,39 @@ import React, { useEffect } from 'react'
 import { useStore } from "@/lib/store";
 import _ from "lodash";
 import { useState } from "react";
+import axios from "axios";
+
 
 export default function CartPage() {
     const [totalCart, setTotalCart] = useState(0)
     const { cart } = useStore()
 
-    console.log(cart)
+    const data = cart.map(item => {
+        return {
+            id: item.id,
+            name: item.name,
+            image: item.image,
+            price: parseInt(item.price) * 16000,
+            quantity: item.total,
+            totalPriceItem: item.totalPriceItem
+        }
+    })
+
     useEffect(() => {
         const total = _.sumBy(cart, "totalPriceItem")
         setTotalCart(total)
     }, [cart])
+
+    const handleCheckout = async () => {
+        const response = await axios.post(`/api/payment`, data)
+            .then(res => {
+                return res.data.token
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        window.snap.pay(response)
+    }
     return (
         <div className="bg-gray-100">
             <div className="wrapper py-11">
@@ -28,7 +51,7 @@ export default function CartPage() {
                                         {
                                             cart?.map((item) => {
                                                 return (
-                                                    <div className="flex justify-between w-full">
+                                                    <div className="flex justify-between w-full" key={item.id}>
                                                         <div className="flex gap-4">
                                                             <div className="max-w-[100px]">
                                                                 <Image src={item.image} width={500} height={500} alt="no image" />
@@ -51,7 +74,7 @@ export default function CartPage() {
                                         <div>Total</div>
                                         <div>${totalCart}</div>
                                     </div>
-                                    <div className="btn mt-5 p-3 cursor-pointer">Checkout</div>
+                                    <div className="btn mt-5 p-3 cursor-pointer" onClick={handleCheckout}>Checkout</div>
                                 </div>
                                 : "Keranjang belanja kosong"
                         }

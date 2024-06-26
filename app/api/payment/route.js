@@ -26,7 +26,7 @@ export async function POST(req) {
         throw new Error("data not found")
     }
 
-    const itemDetails = data.data.map((item) => {
+    const itemDetails = data.map((item) => {
         return {
             key:item.id,
             id: item.id,
