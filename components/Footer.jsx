@@ -9,7 +9,7 @@ export default function Footer() {
     return (
         <>
             <div className="fixed bottom-3 right-3 text-4xl bg-slate-200 p-2 rounded-lg">
-                <Link href="https://wa.me/6281748219014"><FaWhatsapp className="text-green-400" /></Link>
+                <Link href="https://wa.me/628174821904"><FaWhatsapp className="text-green-400" /></Link>
             </div>
             <div className="bg-gray-800 text-white text-center py-3 text-sm">
                 &copy; {currentYear} All Right Reserved. reactcommerce.com
